@@ -64,7 +64,7 @@
             frineds={user.friends}
             friendsCount={user.friends.length}
             email={user.email}
-            date={user.dateJoined}
+            date={new Date(user.dateJoined).toLocaleDateString()}
             username={user.username}
             />
         {/each}
