@@ -4,6 +4,8 @@
     import Button_3D from "$lib/components/Button_3D.svelte";
     import AnimatedTextInput from "$lib/components/animated_text_input.svelte";
     import SquareShade from "$lib/components/squareShade.svelte";
+    import login_assets_2 from "$lib/assets/login_assets_2.svg"
+    import login_assets_1 from "$lib/assets/login_assets_1.svg"
 
     const toSignUp = (e:Event)=>{
         e.preventDefault();
