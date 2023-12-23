@@ -51,7 +51,7 @@
         {#each users as user}
             <Card
             postsCount={user.posts.length}
-            pfp={user.php}
+            pfp={user.pfp}
             frineds={user.frineds}
             friendsCount={user.friends.length}
             email={user.email}
