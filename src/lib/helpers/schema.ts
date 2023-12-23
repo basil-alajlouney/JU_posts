@@ -3,7 +3,7 @@ import {model, Schema, SchemaTypes} from "mongoose";
 let commentSchemaJson = {
     commenter:{
         type:[SchemaTypes.ObjectId],
-        ref:"users",
+        ref:"ju_posts_users",
         required:true
     },
     comment:{
@@ -24,7 +24,7 @@ let postSchemaJson = {
     anonymous:Boolean,
     poster:{
         type:SchemaTypes.ObjectId,
-        ref:"users",
+        ref:"ju_posts_users",
         required:true
     },
     post:{
@@ -37,12 +37,12 @@ let postSchemaJson = {
     },
     likes:{
         type:[SchemaTypes.ObjectId],
-        ref:"users",
+        ref:"ju_posts_users",
         default:null
     },
     comments:{
         type:[SchemaTypes.ObjectId],
-        ref:"comments",
+        ref:"ju_posts_comments",
         default:null
     },
 };
@@ -76,27 +76,27 @@ let userSchemaJson = {
     },
     pendingRequest:{
         type:[SchemaTypes.ObjectId],
-        ref:"users",
+        ref:"ju_posts_users",
         default:null
     },
     friends:{
         type:[SchemaTypes.ObjectId],
-        ref:"users",
+        ref:"ju_posts_users",
         default:null,
     },
     posts:{
         type:[SchemaTypes.ObjectId],
-        ref:"posts",
+        ref:"ju_posts_posts",
         default:null
     },
     likedPosts:{
         type:[SchemaTypes.ObjectId],
-        ref:"posts",
+        ref:"ju_posts_posts",
         default:null
     },
     commentedPosts:{
         type:[SchemaTypes.ObjectId],
-        ref:"posts",
+        ref:"ju_posts_posts",
         default:null
     },
     isVerified:{
