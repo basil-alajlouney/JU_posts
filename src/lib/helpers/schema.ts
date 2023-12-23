@@ -109,9 +109,9 @@ const commentSchema = new Schema(commentSchemaJson);
 const postSchema = new Schema(postSchemaJson);
 const userSchema = new Schema(userSchemaJson);
 
-const Comment = model("comments",commentSchema);
-const Post = model("posts",postSchema);
-const User = model("users",userSchema);
+const Comment = model("ju_posts_comments",commentSchema);
+const Post = model("ju_posts_posts",postSchema);
+const User = model("ju_posts_users",userSchema);
 
 export {
     Comment,
