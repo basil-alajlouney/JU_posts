@@ -27,7 +27,11 @@
                 message:"somthing went wrong"
             });
 
-        return await x.json();
+        const data = await x.json();
+
+        console.log(data);
+
+        return data;
     }
 
     onMount(()=>{
@@ -57,7 +61,7 @@
             <Card
             postsCount={user.posts.length}
             pfp={user.pfp}
-            frineds={user.frineds}
+            frineds={user.friends}
             friendsCount={user.friends.length}
             email={user.email}
             date={user.dateJoined}

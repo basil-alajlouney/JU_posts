@@ -9,7 +9,7 @@ export let email:string = "biteeunkillable@gmail.com";
 export let date:string = "DD/MM/YYYY";
 export let postsCount:number = 0;
 export let friendsCount:number = 0;
-export let frineds:string[] = ["lorem ipsum","smothing dolor"];
+export let frineds:string[] = [];
 let isDropped:boolean = false;
 </script>
 
