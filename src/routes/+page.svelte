@@ -1,8 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import LightEffectButton from "$lib/components/LightEffectButton.svelte";
-    import PhoneAnimation from "$lib/components/phone_animation.svelte";
-    import phoneScroll from "$lib/assets/close-up-woman-sitting-stairs-using-social-media-app-mobile.jpg"
     import LOGO from "$lib/assets/Logo.svg";
 
     const changePageInit = (endpoint:string)=>{
