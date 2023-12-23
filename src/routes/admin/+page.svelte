@@ -1,8 +1,9 @@
 <script lang="ts">
     import Card from "$lib/components/card.svelte";
     import LOGO from "$lib/assets/Logo.svg";
-  import { getHeaders, getUserData } from "$lib/helpers/facade";
-  import { error } from "@sveltejs/kit";
+    import { getHeaders, getUserData } from "$lib/helpers/facade";
+    import { error } from "@sveltejs/kit";
+  import { onMount } from "svelte";
 
     let getData = async ()=>{
         const {username} = await getUserData();
@@ -28,6 +29,10 @@
 
         return await x.json();
     }
+
+    onMount(()=>{
+        document.body.style.overflowY = "auto";
+    })
 
 </script>
 {#await getData()}

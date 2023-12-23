@@ -1,6 +1,7 @@
 <script lang="ts">
 import DEFAULT_PFP from "$lib/assets/defaultPFP.png";
 import {slide} from "svelte/transition";
+import {cardId} from "$lib/index";
 
 export let pfp:string = DEFAULT_PFP;
 export let username:string = "lorem ispum";
@@ -23,8 +24,8 @@ let isDropped:boolean = false;
     <div class="flex justify-between">
         <p class="text-xl">posts made: {postsCount}</p>
         <div>
-            <input class="hidden" bind:checked={isDropped} type="checkbox" name="friendList" id="friendList">
-            <label for="friendList" class="friendList text-xl flex items-center
+            <input class="hidden" bind:checked={isDropped} type="checkbox" name="friendList" id={"card"+$cardId}>
+            <label for={"card"+$cardId++} class="friendList text-xl flex items-center
                     border-solid border-2 border-black p-1 rounded-sm">
                     friends: {friendsCount} 
                 <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
