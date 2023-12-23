@@ -16,7 +16,8 @@ import {
     make_comment,
     get_post_by_id,
     get_friends_post,
-    verify_user
+    verify_user,
+    get_all_users
 } from '$lib/helpers/handledb.js';
 
 async function use(middleware:(action:RequestEvent)=>Promise<Request>,action:RequestEvent):Promise<RequestEvent>{
@@ -78,6 +79,9 @@ export let POST= async (action)=>{
 
     if(endpoint === "verify_user")
         return await verify_user(action);
+
+    if(endpoint === "get_all_users")
+        return await get_all_users(action);
 
     return error(404,{
         message:"not found"

@@ -413,6 +413,26 @@ async function make_comment({request}:{request:Request}){
 
 }
 
+async function get_all_users({request}:{request:Request}) {
+
+  const {username} = await request.json();
+
+  if(username != "ADMIN")
+    error(401,{
+      message:"only the admin has access to this website"
+    })
+
+  let data = await User.find()
+  .populate("friends")
+  .populate({
+    path:"posts",
+    populate:"comments"
+  })
+
+  return json(data);
+
+}
+
 
 export{
   addUser,
@@ -432,5 +452,6 @@ export{
   make_post,
   make_comment,
   get_post_by_id,
-  get_friends_post
+  get_friends_post,
+  get_all_users
 }
