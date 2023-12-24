@@ -19,7 +19,7 @@ let isDropped:boolean = false;
 <div class="w-full max-w-md h-64 bg-white rounded-2xl m-2 my-6 p-4
         flex flex-col justify-around">
     <div class="flex items-center">
-        <img src={pfp ?? DEFAULT_PFP} width="96" class="rounded-full" alt="DEFAULT_PFP"/>
+        <img src={pfp ?? DEFAULT_PFP} width="96" height="96" class="rounded-full" alt="DEFAULT_PFP"/>
         <a href={"/profile/" + id} class="text-2xl font-semibold mx-4">{username}</a>
     </div>
     <p class="text-xl">{email}</p>

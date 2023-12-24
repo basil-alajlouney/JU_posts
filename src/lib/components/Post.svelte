@@ -23,7 +23,9 @@
 
     let posterProfileInit = ()=>{
         goto("/profile/"+posterId);
-        location.reload();
+        setTimeout(() =>
+            location.reload()
+        , 100);
     }
 
     let sentComment = async ()=>{

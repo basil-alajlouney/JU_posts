@@ -11,6 +11,7 @@
         <img 
         class="rounded-full"
         width="72"
+        height="72"
         src={sender_PFP}
         alt="sender_PFP"/>
 

@@ -47,6 +47,7 @@
             <img src={PFP ?? DEFAULT_PFP} alt="PFP"
             class="rounded-full mx-auto"
             width="256"
+            height="256"
             >
 
             <span class="text-center text-xl font-semibold my-3

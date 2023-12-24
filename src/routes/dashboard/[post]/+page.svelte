@@ -76,7 +76,7 @@
 
         <button class="min-[740px]:w-72 p-4 hidden justify-around items-center
                 min-[550px]:flex">
-            <img src={PFP}
+            <img src={PFP ?? DEFAULT_PFP}
             class="rounded-full"
             width="72"
             height="72"
