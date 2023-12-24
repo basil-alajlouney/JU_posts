@@ -26,14 +26,14 @@ alt="LOGO">
 <div class="w-full min-h-[80%] h-fit z-20">
 
         <div class="flex flex-wrap justify-around items-center
-        w-full p-24">
+        w-full sm:p-24">
 
         <section class="text-center flex flex-col justify-around">
-            <p class="text-white text-5xl">
+            <p class="text-white text-5xl sm:mt-0 mt-24">
                 share your life with your<br>
                 collage mates.<br>
             </p>
-            <div class="flex flex-col my-32 flex-grow justify-end">
+            <div class="flex flex-col my-32 flex-grow justify-end p-2">
                     <LightEffectButton
                     on:click={changePageInit("/signup")}
                     >Join Now</LightEffectButton><br>
