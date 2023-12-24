@@ -64,7 +64,7 @@
     <div class=" min-h-96 bg-[#202122] rounded-xl
             p-8 mx-auto w-full">
         <button on:click={posterProfileInit} class="flex flex-wrap items-center">
-            <img src={PFP}
+            <img src={PFP ?? DEFAULT_PFP}
                 class="rounded-full mx-4 mr-8"
                 width="86"
                 height="86"

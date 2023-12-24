@@ -1,7 +1,6 @@
 <script lang="ts">
 import DEFAULT_PFP from "$lib/assets/defaultPFP.png";
 import {slide} from "svelte/transition";
-import {cardId} from "$lib/index";
 
 export let pfp:string = DEFAULT_PFP;
 export let username:string = "lorem ispum";
@@ -10,16 +9,18 @@ export let date:string = "DD/MM/YYYY";
 export let postsCount:number = 0;
 export let friendsCount:number = 0;
 export let id:string = "";
-export let frineds:string[] = [];
+export let frineds:{username:string,id:string}[] = [];
 export let labelsId:number = 0;
+
 let isDropped:boolean = false;
+
 </script>
 
 <div class="w-full max-w-md h-64 bg-white rounded-2xl m-2 my-6 p-4
         flex flex-col justify-around">
     <div class="flex items-center">
         <img src={pfp ?? DEFAULT_PFP} width="96" class="rounded-full" alt="DEFAULT_PFP"/>
-        <a href={"/dashboard/profile" + id} class="text-2xl font-semibold mx-4">{username}</a>
+        <a href={"/profile/" + id} class="text-2xl font-semibold mx-4">{username}</a>
     </div>
     <p class="text-xl">{email}</p>
     <p class="text-xl">{date}</p>
@@ -45,10 +46,10 @@ let isDropped:boolean = false;
                         bg-white border-solid border-2 
                         border-black">
                     
-                    {#each frineds as frined}
-                        <p class="text-center p-2 font-semibold border-solid
+                    {#each frineds as {username,id}}
+                        <a href={"/profile/"+id} class="text-center p-2 font-semibold border-solid
                         border-b-2 border-black last:border-0 whitespace-nowrap hover:bg-gray-300
-                        ">{frined}</p>
+                        ">{username}</a>
                         {/each}
                 </div>
             {/if}

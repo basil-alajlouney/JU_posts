@@ -44,7 +44,7 @@
         <div class="w-full min-h-fit bg-white rounded-xl p-4
                 flex flex-col justify-between">
 
-            <img src={PFP} alt="PFP"
+            <img src={PFP ?? DEFAULT_PFP} alt="PFP"
             class="rounded-full mx-auto"
             width="256"
             >

@@ -4,7 +4,7 @@
     import { getHeaders, getUserData } from "$lib/helpers/facade";
     import { error } from "@sveltejs/kit";
     import { onMount } from "svelte";
-  import { goto } from "$app/navigation";
+    import { goto } from "$app/navigation";
 
     let getData = async ()=>{
         const {username} = await getUserData();
