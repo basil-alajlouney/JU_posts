@@ -132,8 +132,9 @@ async function checkUser({request}:{request:Request}) {
     password:data.get("password")
   })
   .populate("pendingRequest")
-  .populate("friends")
-  .populate("posts");
+  .populate({path:"friends",select:"-password"})
+  .populate("posts")
+  .select("-password");
 
   
   if(!userData)
@@ -208,7 +209,7 @@ async function searchUsers({request}:{request:Request}){
   const x = await User.find({
     "username":{"$regex":search},
     visible:true
-  });
+  }).select("-password");
 
   return json(x);
 }
@@ -221,7 +222,7 @@ async function user_by_id({request}:{request:Request}){
   let userData:any = null;
 
   try{
-    userData = await User.findById(id);
+    userData = await User.findById(id).select("-password");
   }
   catch{
     error(500);
@@ -248,7 +249,7 @@ async function updateUsername({request}:{request:Request}){
   redis.set(sessionId!,JSON.stringify(user),"EX", 60 * 5);
 
   return json({
-    state:"success"
+    message:"name updated successfully"
   })
 }
 
@@ -269,7 +270,7 @@ async function update_visibility({request}:{request:Request}) {
     (await user)?.save();
 
     return json({
-      staus:"success"
+      message:"visbility updated successfully"
     });
 
 }
@@ -427,7 +428,7 @@ async function get_all_users({request}:{request:Request}) {
   .populate({
     path:"posts",
     populate:"comments"
-  })
+  }).select("-password");
 
   return json(data);
 
