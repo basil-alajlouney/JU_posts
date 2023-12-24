@@ -9,7 +9,7 @@ export let date:string = "DD/MM/YYYY";
 export let postsCount:number = 0;
 export let friendsCount:number = 0;
 export let id:string = "";
-export let frineds:{username:string,id:string}[] = [];
+export let frineds:{username:string,_id:string}[] = [];
 export let labelsId:number = 0;
 
 let isDropped:boolean = false;
@@ -46,8 +46,8 @@ let isDropped:boolean = false;
                         bg-white border-solid border-2 
                         border-black">
                     
-                    {#each frineds as {username,id}}
-                        <a href={"/profile/"+id} class="text-center p-2 font-semibold border-solid
+                    {#each frineds as {username,_id}}
+                        <a href={"/profile/"+_id} class="text-center p-2 font-semibold border-solid
                         border-b-2 border-black last:border-0 whitespace-nowrap hover:bg-gray-300
                         ">{username}</a>
                         {/each}
