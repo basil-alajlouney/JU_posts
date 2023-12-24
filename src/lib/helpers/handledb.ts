@@ -1,3 +1,5 @@
+import type { RequestEvent } from "../../routes/login/$types.js";
+
 import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage,ref, uploadBytes } from "firebase/storage";
 import {connect} from "mongoose";
@@ -5,7 +7,6 @@ import {Redis} from "ioredis";
 import {Mongodb_connection_string, redis_caching_db} from "$env/static/private";
 import {Comment,Post,User,} from "./schema.js";
 import { error, json } from '@sveltejs/kit';
-import type { RequestEvent } from "../../routes/login/$types.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDKjcUgdWNF6u7McXkHPrrSlZZU2almpN0",
@@ -217,7 +218,7 @@ async function searchUsers({request}:{request:Request}){
 async function user_by_id({request}:{request:Request}){
   const {id}:{id:string} = await request.json();
 
-  console.log("meow!!");
+  // console.log("meow!!");
   
   let userData:any = null;
 
@@ -228,7 +229,7 @@ async function user_by_id({request}:{request:Request}){
     error(500);
   }
 
-  console.log(userData);
+  // console.log(userData);
 
   return json(
     userData
@@ -353,7 +354,7 @@ async function get_friends_post({request}:{request:Request}){
     posts:e.posts
   }))
 
-  console.log(data);
+  // console.log(data);
 
   return json(data);
 }
