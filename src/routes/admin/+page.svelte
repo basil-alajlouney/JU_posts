@@ -29,7 +29,7 @@
 
         const data = await x.json();
 
-        console.log(data);
+        // console.log(data);   
 
         return data;
     }
@@ -57,8 +57,9 @@
 
     </header>
     <div class="w-full p-12 flex flex-wrap justify-around">
-        {#each users as user}
+        {#each users as user,i}
             <Card
+            labelsId={i}
             id={user._id}
             postsCount={user.posts.length}
             pfp={user.pfp}

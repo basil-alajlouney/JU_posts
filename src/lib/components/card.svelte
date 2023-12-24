@@ -11,6 +11,7 @@ export let postsCount:number = 0;
 export let friendsCount:number = 0;
 export let id:string = "";
 export let frineds:string[] = [];
+export let labelsId:number = 0;
 let isDropped:boolean = false;
 </script>
 
@@ -25,8 +26,8 @@ let isDropped:boolean = false;
     <div class="flex justify-between">
         <p class="text-xl">posts made: {postsCount}</p>
         <div>
-            <input class="hidden" bind:checked={isDropped} type="checkbox" name="friendList" id={"card"+$cardId}>
-            <label for={"card"+$cardId++} class="friendList text-xl flex items-center
+            <input class="hidden" bind:checked={isDropped} type="checkbox" name="friendList" id={ "" + labelsId}>
+            <label for={ "" + labelsId} class="friendList text-xl flex items-center
                     border-solid border-2 border-black p-1 rounded-sm">
                     friends: {friendsCount} 
                 <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
