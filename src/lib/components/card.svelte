@@ -9,6 +9,7 @@ export let email:string = "biteeunkillable@gmail.com";
 export let date:string = "DD/MM/YYYY";
 export let postsCount:number = 0;
 export let friendsCount:number = 0;
+export let id:string = "";
 export let frineds:string[] = [];
 let isDropped:boolean = false;
 </script>
@@ -17,7 +18,7 @@ let isDropped:boolean = false;
         flex flex-col justify-around">
     <div class="flex items-center">
         <img src={pfp ?? DEFAULT_PFP} width="96" class="rounded-full" alt="DEFAULT_PFP"/>
-        <p class="text-2xl font-semibold mx-4">{username}</p>
+        <a href={"/dashboard/profile" + id} class="text-2xl font-semibold mx-4">{username}</a>
     </div>
     <p class="text-xl">{email}</p>
     <p class="text-xl">{date}</p>

@@ -59,6 +59,7 @@
     <div class="w-full p-12 flex flex-wrap justify-around">
         {#each users as user}
             <Card
+            id={user._id}
             postsCount={user.posts.length}
             pfp={user.pfp}
             frineds={user.friends}
