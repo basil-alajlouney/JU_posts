@@ -2,7 +2,7 @@
     import Button_3D from "./Button_3D.svelte";
     import DEFAULT_PFP from "$lib/assets/defaultPFP.png";
     import { getHeaders } from "$lib/helpers/facade";
-  import { error } from "@sveltejs/kit";
+    import { error } from "@sveltejs/kit";
 
     export let sender_PFP = DEFAULT_PFP;
     export let isFriendRequest:boolean = false;
@@ -63,7 +63,7 @@
             <img 
             class="rounded-full"
             width="72"
-            src={sender_PFP}
+            src={sender_PFP ?? DEFAULT_PFP}
             alt="sender_PFP"/>
 
             <p>{username}</p>

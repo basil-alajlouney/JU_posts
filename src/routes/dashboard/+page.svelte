@@ -187,7 +187,7 @@
 <div class="fixed top-0 right-0 h-full min-w-2 bg-white">
     <Slider
     data={userData?.pendingRequest ?? []}
-    friends={userData.friends}
+    friends={userData.friends ?? []}
     id={userData?._id ?? ""}
     />
 </div>

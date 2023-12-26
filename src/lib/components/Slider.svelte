@@ -4,7 +4,7 @@
     import NotificationElement from "./NotificationElement.svelte";
     import FriendListElement from "./friendListElement.svelte";
 
-    let show=false;
+    let show = false;
     let ShowFriends = false;
     export let id = "";
     export let data:any[] = [];

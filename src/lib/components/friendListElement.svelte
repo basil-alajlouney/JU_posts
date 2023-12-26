@@ -1,7 +1,7 @@
 <script lang="ts">
-    import defaultPFP from '$lib/assets/defaultPFP.png';
+    import DEFAULT_PFP from '$lib/assets/defaultPFP.png';
     export let username:string = "";
-    export let sender_PFP:string = defaultPFP;
+    export let sender_PFP:string;
     export let friendRequestElement:HTMLElement | null = null;
     export let id:string = "";
 </script>
@@ -12,7 +12,7 @@
         class="rounded-full"
         width="72"
         height="72"
-        src={sender_PFP}
+        src={sender_PFP ?? DEFAULT_PFP}
         alt="sender_PFP"/>
 
         <p>{username}</p>
