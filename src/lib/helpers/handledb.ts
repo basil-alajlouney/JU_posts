@@ -161,7 +161,12 @@ async function accept_friend_request({request}:{request:Request}) {
 
   let sender = await User.findById(senderId);
 
-  sender?.friends.push(user?._id!);
+  const alreadyFriends = user?.friends.some(el=>{
+    JSON.stringify(el._id) == senderId
+  }); 
+
+  if(!alreadyFriends)
+    sender?.friends.push(user?._id!);
 
   user!.pendingRequest = user?.pendingRequest?.filter((el)=>{
     if(el._id != senderId)
@@ -281,9 +286,18 @@ async function add_friend({request}:{request:Request}){
 
   const reciver = await User.findById(reciverId);
 
-  reciver?.pendingRequest.push(senderId as any);
+  const alreadySent = reciver?.pendingRequest.some((el)=>
+    JSON.stringify(el._id) == senderId
+  );
 
-  reciver?.save();
+  const alreadyFriends = reciver?.friends.some(el=>{
+    JSON.stringify(el._id) == senderId
+  })
+
+  if(!alreadyFriends && !alreadySent){
+    reciver?.pendingRequest.push(senderId as any);
+    reciver?.save();
+  }
 
   return json({
     message:"friend request sent successfully"
