@@ -58,6 +58,7 @@
 
 <style>
         img{
+        object-fit: fill;
         aspect-ratio: none;
     }
 </style>
