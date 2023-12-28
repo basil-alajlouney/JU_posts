@@ -44,7 +44,7 @@ let isDropped:boolean = false;
                     transition:slide={{axis:"y"}} 
                     class="drop-down absolute translate-y-2 
                         bg-white border-solid border-2 
-                        border-black">
+                        border-black flex flex-col">
                     
                     {#each frineds as {username,_id}}
                         <a href={"/profile/"+_id} class="text-center p-2 font-semibold border-solid
