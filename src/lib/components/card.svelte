@@ -38,8 +38,8 @@ let isDropped:boolean = false;
 
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <!-- svelte-ignore a11y-no-static-element-interactions -->
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
             {#if isDropped}
-                <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div 
                     transition:slide={{axis:"y"}} 
                     class="drop-down absolute translate-y-2 
