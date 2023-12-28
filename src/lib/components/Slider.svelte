@@ -3,17 +3,21 @@
     import { slide,fade } from "svelte/transition";
     import NotificationElement from "./NotificationElement.svelte";
     import FriendListElement from "./friendListElement.svelte";
+    import { onMount } from "svelte";
 
     let show = false;
     let ShowFriends = false;
+    let slider:HTMLElement;
+
     export let id = "";
     export let data:any[] = [];
+    export let notifications:any[] = [];
     export let friends:any[] = [];
 
 </script>
 {#if show}
-<div transition:slide={{axis:"x"}}
-class="h-full min-[340px]:w-80 w-52 bg-[#191919] border-l-4 border-white first-letter:
+<div bind:this={slider} transition:slide={{axis:"x"}}
+class="slider h-full min-[340px]:w-80 w-52 bg-[#191919] border-l-4 border-white first-letter:
     flex flex-col overflow-y-auto scrollbar-thin scrollbar-track-transparent
     scrollbar-thumb-[rgba(255,255,255,0.05)]">
         <div class="w-full h-16 flex">
@@ -24,7 +28,7 @@ class="h-full min-[340px]:w-80 w-52 bg-[#191919] border-l-4 border-white first-l
                 ease-in-out duration-300">
                 <p class="text-xl text-center cursor-pointer
                         text-white font-semibold">
-                    {@html ShowFriends? "FRIEND<br>LIST":"FRIEND<br>REQUEST"}
+                    {@html ShowFriends? "FRIEND<br>LIST":"NOTIFICATIONS<br>LIST"}
                     
                 </p>
             </label>
@@ -52,13 +56,24 @@ class="h-full min-[340px]:w-80 w-52 bg-[#191919] border-l-4 border-white first-l
             id={entry._id}
             />
         {/each}
+        {#each notifications as notification}
+            <NotificationElement
+            text={notification.text}
+            sender_PFP={notification.user.pfp}
+            username={notification.user.username}
+            userId={id}
+            id={notification.user._id}
+            />
+        {/each}
+        <!-- {#each items as item}
+        {/each} -->
     {/if}
 
 </div>
 
 {/if}
 
-<button on:click={()=>show = !show} class="w-10 h-10 bg-white -translate-x-1/2 rounded-full
+<button on:click={()=>show = !show} class="slider w-10 h-10 bg-white -translate-x-1/2 rounded-full
     absolute top-1/2 flex items-center">
 
     {#if show}

@@ -9,6 +9,7 @@
     export let username = "Lorem Ipsum_1_";
     export let id = "";
     export let userId = "";
+    export let text:string = "";
 
     let friendRequestElement:HTMLElement;
 
@@ -81,7 +82,11 @@
                 Notification message !
                 <br>
             </span>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic minus, vel soluta dolor debitis sequi asperiores iusto reprehenderit adipisci facere sed, cumque natus repellat praesentium necessitatibus quaerat, eveniet numquam reiciendis.
+            <span class="flex flex-col items-center">
+                <img width="64" src={sender_PFP ?? DEFAULT_PFP}
+                alt="sender_PFP">
+                {text}
+            </span>
         </p>
     </div>
 {/if}

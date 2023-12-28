@@ -52,3 +52,9 @@
 
     </section>
 </main>
+
+<style>
+    img{
+        aspect-ratio: none;
+    }
+</style>

@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import LightEffectButton from "$lib/components/LightEffectButton.svelte";
     import LOGO from "$lib/assets/Logo.svg";
+  import PhoneAnimation from "$lib/components/phone_animation.svelte";
 
     const changePageInit = (endpoint:string)=>{
         return ()=>{
@@ -44,14 +45,14 @@ alt="LOGO">
         </section>
 
         
-        <div class="w-[320px] h-[580px]">
+        <!-- <div class="w-[320px] h-[580px]">
             <spline-viewer url="https://prod.spline.design/r4WeeoJ067nfrerb/scene.splinecode"></spline-viewer>
-        </div>
+        </div> -->
 
-        <!-- <PhoneAnimation
+        <PhoneAnimation
         width={320}
         height={640}
-        /> -->
+        />
     </div>
 
     <footer class="text-center m-3 text-white text-lg -translate-y-f">

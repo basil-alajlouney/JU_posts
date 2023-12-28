@@ -34,7 +34,8 @@
 <div bind:this={currentElement} class="w-[20rem] top-24 bg-white absolute
         min-[415px]:-translate-x-full -translate-x-[80%]
         min-[415px]:top-20 min-[415px]:rounded-l-2xl rounded-b-2xl
-        min-[950px]:-translate-x-[40%] min-[740px]:-translate-x-[60%]"
+        min-[950px]:-translate-x-[40%] min-[740px]:-translate-x-[60%]
+        overflow-hidden"
     transition:fade={{duration:100}}>
 
     <!-- <div class="w-full h-16 rounded-tl-[15px] p-5 cursor-pointer
@@ -50,6 +51,14 @@
             border-solid border-black flex items-center
             font-semibold border-b-2 hover:bg-gray-200">
         <p class="text-xl">Credits</p>
+    </div>
+ 
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div on:click={()=>goto("/exchange_courses")} class="w-full h-16 p-5 cursor-pointer
+            border-solid border-black flex items-center
+            font-semibold border-b-2 hover:bg-gray-200">
+        <p class="text-xl">exchanging courses</p>
     </div>
  
     <button on:click={async ()=>

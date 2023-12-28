@@ -1,11 +1,19 @@
 import type { RequestEvent } from "../../routes/login/$types.js";
+type ExchangePostType = {
+  poster:string,
+  ownedCourse:string,
+  ownedCourseTime:string,
+  requestedCourse:string,
+  requestedCourseTime:string,
+  contactMethod:string,
+  contactLink:string};
 
 import { initializeApp } from "firebase/app";
 import { getDownloadURL, getStorage,ref, uploadBytes } from "firebase/storage";
 import {connect} from "mongoose";
 import {Redis} from "ioredis";
 import {Mongodb_connection_string, redis_caching_db} from "$env/static/private";
-import {Comment,Post,User,} from "./schema.js";
+import {Comment,Post,User,ExchangePost,Notification} from "./schema.js";
 import { error, json } from '@sveltejs/kit';
 
 const firebaseConfig = {
@@ -135,6 +143,7 @@ async function checkUser({request}:{request:Request}) {
   .populate("pendingRequest")
   .populate({path:"friends",select:"-password"})
   .populate("posts")
+  .populate({path:"notification",populate:{path:"user",select:"-password"}})
   .select("-password");
 
   
@@ -287,21 +296,32 @@ async function add_friend({request}:{request:Request}){
   const reciver = await User.findById(reciverId);
 
   const alreadySent = reciver?.pendingRequest.some((el)=>
-    JSON.stringify(el._id) == senderId
+    el._id.toString() == senderId
   );
 
-  const alreadyFriends = reciver?.friends.some(el=>{
-    JSON.stringify(el._id) == senderId
-  })
+  const alreadyFriends = reciver?.friends.some(el=>
+    el._id.toString() == senderId
+  );
+
+  if(alreadySent)
+    return json({
+      message:"friend request already sent"
+    });
+    
+    if(alreadyFriends)
+    return json({
+      message:"already frineds"
+    });
 
   if(!alreadyFriends && !alreadySent){
     reciver?.pendingRequest.push(senderId as any);
+    console.log("object");
     reciver?.save();
   }
 
   return json({
     message:"friend request sent successfully"
-  })
+  });
 
 }
 
@@ -449,6 +469,132 @@ async function get_all_users({request}:{request:Request}) {
 
 }
 
+async function make_exchange_request({request}:{request:Request}){
+  const {
+    poster,
+    ownedCourse,
+    ownedCourseTime,
+    requestedCourse,
+    requestedCourseTime,
+    contactMethod,
+    contactLink
+  }
+  :ExchangePostType = await request.json();
+
+  const post = new ExchangePost({
+    poster,
+    contactLink,
+    contactMethod,
+    ownedCourse,
+    ownedCourseTime,
+    requestedCourse,
+    requestedCourseTime
+  });
+
+  post.save();
+
+  return json({
+    message:"post made successfully"
+  })
+
+}
+
+async function update_exchange_request({request}:{request:Request}){
+  const {
+    id,
+    postId,
+    ownedCourse,
+    ownedCourseTime,
+    requestedCourse,
+    requestedCourseTime,
+    contactMethod,
+    contactLink
+  }:ExchangePostType & {postId:string, id:string} = await request.json();
+
+  let userId = id;
+
+  const post = await ExchangePost.findById(postId);
+
+  if(userId != post?.poster._id.toString())
+    error(401,{
+      message:"can't be edited by non other that the one who posted it"
+    })
+
+  if(!post)
+    return error(405,{
+      message:"somthing went wrong"
+    });
+
+  post!.ownedCourse = ownedCourse;
+  post!.ownedCourseTime = ownedCourseTime;
+  post!.requestedCourse = requestedCourse;
+  post!.requestedCourseTime = requestedCourseTime;
+  post!.contactMethod = contactMethod;
+  post!.contactLink = contactLink;
+
+  post!.save();
+
+  console.log(post);
+
+  return json({
+    message:"post updated successfully"
+  })
+
+}
+
+async function delete_exchange_request({request}:{request:Request}){
+  const {id} = await request.json();
+
+  const x = await ExchangePost.deleteOne({_id:id});
+
+  if(!x.acknowledged)
+    error(405,{
+      message:"the exchange request was not deleted"
+    })
+
+  return json({
+    message:"the exchange request deleted"
+  });
+}
+
+async function get_all_exchange_request({request}:{request:Request}){
+  
+  let data = await ExchangePost.find().populate({
+    path:"poster",
+    select:"username pfp"
+  });
+
+    return json(data);
+}
+
+async function exchange_request_notification({request}:{request:Request}){
+  const {text, reciverId, senderId} = await request.json();
+  let notification = new Notification({
+    text,
+    user:senderId
+  })
+
+  await notification.save();
+
+  const user = await User.findById(reciverId);
+
+  const alreadySentMax = user!.notification?.filter(e=>
+    e._id.toString == senderId)?.length >= 5;
+
+    if(alreadySentMax)
+      return json({
+        message:"already sent a message"
+      })
+
+  user?.notification.push(notification._id);
+
+  user?.save();
+
+  return json({
+    message:"message sent successfully"
+  })
+
+}
 
 export{
   addUser,
@@ -469,5 +615,10 @@ export{
   make_comment,
   get_post_by_id,
   get_friends_post,
-  get_all_users
+  get_all_users,
+  make_exchange_request,
+  update_exchange_request,
+  get_all_exchange_request,
+  delete_exchange_request,
+  exchange_request_notification
 }

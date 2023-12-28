@@ -4,8 +4,8 @@
     import Button_3D from "$lib/components/Button_3D.svelte";
     import SquareShade from "$lib/components/squareShade.svelte";
     import VerficationCodeForm from "$lib/components/verficationCodeForm.svelte";
-  import { getHeaders } from "$lib/helpers/facade";
-  import { error } from "@sveltejs/kit";
+    import { getHeaders } from "$lib/helpers/facade";
+    import { error } from "@sveltejs/kit";
 
     let actCode:string[];
 
@@ -65,3 +65,9 @@
         <img class="ml-auto my-auto mr-24 hidden min-[1250px]:block" src={auth_assets_2} alt="auth_assets_1">
     </section>
 </main>
+
+<style>
+        img{
+        aspect-ratio: none;
+    }
+</style>

@@ -17,7 +17,12 @@ import {
     get_post_by_id,
     get_friends_post,
     verify_user,
-    get_all_users
+    get_all_users,
+    make_exchange_request,
+    update_exchange_request,
+    get_all_exchange_request,
+    delete_exchange_request,
+    exchange_request_notification,
 } from '$lib/helpers/handledb.js';
 
 async function use(middleware:(action:RequestEvent)=>Promise<Request>,action:RequestEvent):Promise<RequestEvent>{
@@ -82,6 +87,21 @@ export let POST= async (action)=>{
 
     if(endpoint === "get_all_users")
         return await get_all_users(action);
+
+    if(endpoint === "make_exchange_request")
+        return await make_exchange_request(action);
+
+    if(endpoint === "update_exchange_request")
+        return await update_exchange_request(action);
+
+    if(endpoint === "get_all_exchange_request")
+        return await get_all_exchange_request(action);
+    
+    if(endpoint === "delete_exchange_request")
+        return await delete_exchange_request(action);
+
+    if(endpoint === "exchange_request_notification")
+        return await exchange_request_notification(action);
 
     return error(404,{
         message:"not found"

@@ -56,6 +56,9 @@
     </div>
 
 <style>
+    img{
+        aspect-ratio: unset;
+    }
     .phone-frame{
         filter: drop-shadow(5px 5px 0px black);
     }
