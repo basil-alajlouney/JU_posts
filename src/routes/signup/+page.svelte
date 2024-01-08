@@ -43,7 +43,7 @@
         <Button_3D on:click={loginInit}>Login</Button_3D>
     </form>
 
-        <img class="z-10 mt-auto mb-[5%] mr-4 hidden min-[500px]:block
+        <img class=" z-10 mt-auto mb-[5%] mr-4 hidden min-[500px]:block
         min-[900px]:h-[240px] min-[900px]:w-[240px] md:420px md:420px"
         width="20%"
         height="20%"
@@ -52,10 +52,3 @@
 
     </section>
 </main>
-
-<style>
-    img{
-        object-fit: fill;
-        object-fit: none;
-    }
-</style>

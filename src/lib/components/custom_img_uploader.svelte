@@ -29,3 +29,9 @@
         <Button_3D on:click={uploadInit}>choose</Button_3D>
     </div>
 </div>
+
+<style>
+    img {
+        object-fit: fill;
+    }
+</style>
