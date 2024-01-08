@@ -13,7 +13,7 @@
 
     <div>
         <div class="flex flex-wrap items-center">
-            <img src={PFP}
+            <img src={PFP ?? DEFAULT_PFP}
                 class="rounded-full mx-4 mr-8"
                 width="86"
                 height="86"

@@ -56,7 +56,16 @@
             message:"somthing went worng"
         })
 
-        commentText = "";
+    let call = await fetch("/api/user_by_id",request);
+    let {username,pfp} = await call.json();
+
+    comments.push({
+        username,
+        pfp,
+        comment: commentText
+    })
+    comments = comments;
+    commentText = "";
     }
 </script>
 
